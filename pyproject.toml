@@ -1,0 +1,13 @@
+name = "job"
+version = "0.1.0"
+description = "Gen AI Job Recommendation MCP Tool"
+readme = "README.md"
+requires-python = ">=3.11.2"
+dependencies = [
+    "apify_client>=2.4.0",
+"PyMuPDF>=1.26.7"
+"streamlit>=1.53.0",
+"openai>=2.15.0",
+"mcp>=1.25.0",
+"python-dotenv>=1.2.1"
+]

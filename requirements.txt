@@ -3,3 +3,5 @@ openai
 pymupdf 
 python-dotenv
 apify-client
+mcp
+mcp[cli]

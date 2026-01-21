@@ -2,7 +2,7 @@ import fitz
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
-from apify_client import ApifyClient
+
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -10,7 +10,6 @@ os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 
 client = OpenAI(api_key=OPENAI_API_KEY)
-apify_client = ApifyClient(os.getenv("APIFY_API_TOKEN"))
 
 def extract_text_from_pdf(uploaded_file):
     """
@@ -57,19 +56,3 @@ def ask_openai(prompt, max_tokens = 500):
     )
     
     return response.choices[0].message.content
-
-def fetch_likedin_jobs(search_query,location="india",rows=30):
-    run_input = {
-        "keyword": search_query,
-        "maxJobs": 30,
-        "freshness":"all",
-        "sortBy":"relevance",
-        "experience":"all"
-    }
-    # Run the Actor and wait for it to finish
-    run = apify_client.actor("BHzefUZlZRKWxkTck").call(run_input=run_input)
-    jobs = list(apify_client.dataset(run["defaultDatasetId"]).iterate_items())
-    return jobs
-
-def fetch_naukri_jobs(search_query,location="india",rows=30):
-    pass    
